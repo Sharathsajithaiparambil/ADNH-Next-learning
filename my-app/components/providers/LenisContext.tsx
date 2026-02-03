@@ -2,10 +2,7 @@
 
 import { createContext, useContext, useRef, useEffect, ReactNode, useState } from "react";
 import Lenis from "lenis";
-
-interface LenisContextType {
-  lenis: Lenis | null;
-}
+import { LenisContextType } from "@/types";
 
 const LenisContext = createContext<LenisContextType>({ lenis: null });
 

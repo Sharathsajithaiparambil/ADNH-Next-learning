@@ -3,18 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface ImageItem {
-  id: number;
-  image: string;
-  mobileImage?: string;
-  title: string;
-}
-
-interface MobileImageCarouselProps {
-  items: ImageItem[];
-  interval?: number;
-}
+import { MobileImageCarouselProps, ImageItem } from "@/types";
 
 export default function MobileImageCarousel({
   items,

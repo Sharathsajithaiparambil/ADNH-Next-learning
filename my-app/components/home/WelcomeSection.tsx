@@ -2,10 +2,7 @@ import { getSliderData } from "@/app/api/api";
 import DesktopImageRow from "./DesktopImageRow";
 import MobileImageCarousel from "./MobileImageCarousel";
 import { HiArrowRight } from "react-icons/hi";
-
-interface HeroSectionProps {
-  slug: string;
-}
+import { HeroSectionProps } from "@/types";
 
 export default async function WelcomeSection({ slug }: HeroSectionProps) {
   let sliderData = null;
@@ -26,7 +23,7 @@ export default async function WelcomeSection({ slug }: HeroSectionProps) {
   const { title, description, items } = sliderData;
 
   return (
-    <section className="py-12 bg-slate-100">
+    <section id="home" className="py-12 bg-slate-100">
       <div className="container mx-auto px-4 container-padding">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
           <div className="space-y-6 lg:col-span-2 lg:pr-20 lg:pt-20">

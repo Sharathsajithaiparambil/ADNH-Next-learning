@@ -6,10 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { HiMenu } from "react-icons/hi";
 import { useLenis } from "../providers/LenisContext";
-
-interface MobileMenuProps {
-  logoUrl?: string;
-}
+import { MobileMenuProps } from "@/types";
 
 export default function MobileMenu({ logoUrl }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +31,24 @@ export default function MobileMenu({ logoUrl }: MobileMenuProps) {
     setIsOpen(false);
   };
 
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      closeMenu();
+      setTimeout(() => {
+        if (lenis) {
+          lenis.scrollTo(0, {
+            duration: 1.2,
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      closeMenu();
+    }
+  };
+
   const handleAboutUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname === "/") {
       e.preventDefault();
@@ -48,6 +63,8 @@ export default function MobileMenu({ logoUrl }: MobileMenuProps) {
           });
         }
       }, 100);
+    } else {
+      closeMenu();
     }
   };
 
@@ -91,19 +108,27 @@ export default function MobileMenu({ logoUrl }: MobileMenuProps) {
             className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center transition"
             aria-label="Close menu"
           >
-              <span className="text-3xl text-gray-600 font-medium">×</span>
+            <span className="text-3xl text-gray-600 font-medium">×</span>
           </button>
         </div>
 
         <nav className="flex flex-col py-4 flex-1 overflow-y-auto">
           {links.map((link) => {
             const isActive = pathname === link.href;
+            const isHome = link.href === "/";
             const isAboutUs = link.href === "/about-us";
+            
+            const handleClick = isHome 
+              ? handleHomeClick 
+              : isAboutUs 
+              ? handleAboutUsClick 
+              : closeMenu;
+            
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={isAboutUs ? handleAboutUsClick : closeMenu}
+                onClick={handleClick}
                 className={`px-6 py-2 mx-7 my-2 text-lg uppercase transition-all duration-200 rounded ${
                   isActive
                     ? "text-gray-800 font-medium bg-gray-200"

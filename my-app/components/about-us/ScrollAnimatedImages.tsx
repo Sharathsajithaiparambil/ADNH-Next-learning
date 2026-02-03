@@ -3,22 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-interface ImageItem {
-  id: number;
-  image: string;
-  mobileImage?: string;
-  title: string;
-}
-
-interface ScrollAnimatedImagesProps {
-  items: ImageItem[];
-}
-
-interface AnimatedImageItemProps {
-  item: ImageItem;
-  index: number;
-}
+import { ScrollAnimatedImagesProps, AnimatedImageItemProps, ImageItem } from "@/types";
 
 function AnimatedImageItem({ item, index }: AnimatedImageItemProps) {
   const ref = useRef<HTMLDivElement>(null);

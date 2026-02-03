@@ -1,15 +1,6 @@
 import { getOurBrands } from "@/app/api/api";
 import OurBrandsClient from "./OurBrandsClient";
-
-interface Brand {
-  id: number;
-  slug: string;
-  name: string;
-  logo: string;
-  thumbnail: string;
-  alt_text: string;
-  display_order: number;
-}
+import { Brand } from "@/types";
 
 export default async function OurBrandsSection() {
   let brands: Brand[] = [];

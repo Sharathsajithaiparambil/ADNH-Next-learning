@@ -3,18 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-interface ImageItem {
-  id: number;
-  image: string;
-  mobileImage?: string;
-  title: string;
-}
-
-interface ImageRowProps {
-  items: ImageItem[];
-  autoSwapInterval?: number;
-}
+import { ImageRowProps, ImageItem } from "@/types";
 
 export default function ImageRow({ items, autoSwapInterval = 3000 }: ImageRowProps) {
   const [expandedIndex, setExpandedIndex] = useState(0);

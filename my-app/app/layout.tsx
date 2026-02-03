@@ -18,7 +18,9 @@ export default function RootLayout({
       <body>
         <SmoothScroll>
           <Header />
-          {children}
+          <div className="pt-[88px]">
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>

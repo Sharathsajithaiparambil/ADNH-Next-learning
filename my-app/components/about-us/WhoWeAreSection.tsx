@@ -1,9 +1,6 @@
 import { getSliderData } from "@/app/api/api";
 import ScrollAnimatedImages from "./ScrollAnimatedImages";
-
-interface WhoWeAreSectionProps {
-  slug: string;
-}
+import { WhoWeAreSectionProps } from "@/types";
 
 export default async function WhoWeAreSection({ slug }: WhoWeAreSectionProps) {
   let sliderData = null;
