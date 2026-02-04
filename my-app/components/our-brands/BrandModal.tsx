@@ -19,7 +19,7 @@ export default function BrandModal({ brand, isOpen, onClose }: BrandModalProps) 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={onClose}
-            className="fixed inset-0 bg-blurred bg-opacity-50 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-blurred bg-opacity-50 backdrop-blur-sm z-[50]"
           />
 
           {/* Modal */}
@@ -28,7 +28,7 @@ export default function BrandModal({ brand, isOpen, onClose }: BrandModalProps) 
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full max-w-3xl bg-white shadow-2xl z-50 overflow-y-auto rounded-tl-2xl rounded-bl-2xl"
+            className="fixed top-0 right-0 h-full w-full max-w-3xl bg-white shadow-2xl z-[60] rounded-tl-2xl rounded-bl-2xl"
           >
             {/* Close Button */}
             <button
@@ -39,8 +39,26 @@ export default function BrandModal({ brand, isOpen, onClose }: BrandModalProps) 
               <HiX className="w-7 h-7 text-gray-800" />
             </button>
 
-            {/* Content */}
-            <div className="p-8 lg:p-12">
+            {/* Scrollable Content */}
+            <div
+              className="overflow-y-auto overflow-x-hidden p-8 lg:p-12 pt-20"
+              style={{ 
+                flex: "1 1 auto",
+                WebkitOverflowScrolling: "touch",
+                overscrollBehavior: "contain",
+                touchAction: "pan-y",
+                minHeight: 0,
+                height: "100%",
+                maxHeight: "100%",
+                position: "relative"
+              }}
+              onWheel={(e) => {
+                e.stopPropagation();
+              }}
+              onTouchMove={(e) => {
+                e.stopPropagation();
+              }}
+            >
               {/* Logo */}
               <div className="mb-8">
                 <div className="relative w-48 h-32 mb-6">
@@ -56,7 +74,7 @@ export default function BrandModal({ brand, isOpen, onClose }: BrandModalProps) 
 
               {/* Thumbnail Image */}
               {brand.thumbnail && (
-                <div className="relative w-full h-64 mb-8 rounded-2xl overflow-hidden">
+                <div className="relative w-full h-75 mb-8 rounded-2xl overflow-hidden">
                   <Image
                     src={brand.thumbnail}
                     alt={brand.alt_text}

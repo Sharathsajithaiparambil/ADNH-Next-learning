@@ -39,7 +39,7 @@ function AnimatedImageItem({ item, index }: AnimatedImageItemProps) {
 
       {/* Mobile Image */}
       {item.mobileImage && (
-        <div className="md:hidden relative w-full h-[400px]">
+        <div className="md:hidden relative w-full h-[300px]">
           <Image
             src={item.mobileImage}
             alt={item.title}

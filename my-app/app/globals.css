@@ -42,3 +42,18 @@ body {
 .container-padding {
   padding: 0 20px !important;
 }
+
+.brands-swiper .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.brands-swiper .swiper-pagination-bullet {
+  background: #09446c;
+  opacity: 0.3;
+}
+
+.brands-swiper .swiper-pagination-bullet-active {
+  background: #b49b57 !important;
+  opacity: 1;
+}

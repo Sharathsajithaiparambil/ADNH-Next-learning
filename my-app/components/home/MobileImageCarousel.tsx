@@ -27,7 +27,7 @@ export default function MobileImageCarousel({
   const currentItem = items[currentIndex];
 
   return (
-    <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
+    <div className="relative w-full h-[300px] rounded-xl overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

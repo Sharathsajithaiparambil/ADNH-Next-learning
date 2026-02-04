@@ -3,8 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import BrandModal from "./BrandModal";
 import { OurBrandsClientProps, Brand } from "@/types";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function OurBrandsClient({ brands }: OurBrandsClientProps) {
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
@@ -32,7 +37,7 @@ export default function OurBrandsClient({ brands }: OurBrandsClientProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl lg:text-4xl font-serif text-secondary font-bold mb-4"
+              className="text-4xl lg:text-5xl font-serif text-secondary font-bold mb-3"
             >
               Our Brands
             </motion.h2>
@@ -45,7 +50,57 @@ export default function OurBrandsClient({ brands }: OurBrandsClientProps) {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+          {/* Mobile Swiper */}
+          <div className="lg:hidden">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={20}
+              slidesPerView={1}
+              speed={900}
+              breakpoints={{
+                767: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+              }}
+              pagination={{ clickable: true }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="brands-swiper"
+            >
+              {brands.map((brand, index) => (
+                <SwiperSlide key={brand.id}>
+                  <motion.div
+                    initial={{ opacity: 0, filter: "blur(10px)" }}
+                    whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 1.5,
+                      delay: index * 0.2,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
+                    className="flex flex-col items-center justify-center p-4 cursor-pointer h-full"
+                    onClick={() => handleBrandClick(brand)}
+                  >
+                    <div className="relative w-full h-24 mb-4">
+                      <Image
+                        src={brand.logo}
+                        alt={brand.alt_text}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {brands.map((brand, index) => (
               <motion.div
                 key={brand.id}
@@ -59,7 +114,7 @@ export default function OurBrandsClient({ brands }: OurBrandsClientProps) {
                 className="flex flex-col items-center justify-center p-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
                 onClick={() => handleBrandClick(brand)}
               >
-                <div className="relative w-full md:h-25 lg:h-28 mb-4">
+                <div className="relative w-full h-32 lg:h-36 mb-4">
                   <Image
                     src={brand.logo}
                     alt={brand.alt_text}
