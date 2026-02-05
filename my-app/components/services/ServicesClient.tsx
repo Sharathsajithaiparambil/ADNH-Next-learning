@@ -18,7 +18,7 @@ export default function ServicesClient({ header, services }: ServicesClientProps
   };
 
   return (
-    <section id="services" className="pt-16 bg-[#fcfaf7] relative overflow-hidden">
+    <section id="services" className="pt-16 bg-white relative overflow-hidden">
       <div className="mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -63,7 +63,7 @@ export default function ServicesClient({ header, services }: ServicesClientProps
                     gridColumn: isSelected ? `span 4` : `span 1`,
                   }}
                   transition={{ duration: 0 }}
-                  className={`relative bg-white border-l-1 border-gray-200 border-secondary overflow-hidden cursor-pointer`}
+                  className={`relative border-l-1 border-gray-200 bg-slate-100/50 border-secondary overflow-hidden cursor-pointer`}
                   onHoverStart={() => {
                     if (!isSelected) {
                       handleServiceClick(service.id);

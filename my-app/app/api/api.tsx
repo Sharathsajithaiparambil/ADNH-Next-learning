@@ -15,3 +15,7 @@ export async function getSliderData(slug: string) {
 export async function getOurBrands() {
     return get('/api/public/our-brands');
 }
+
+export async function getSectors() {
+    return get('/api/public/sectors');
+}

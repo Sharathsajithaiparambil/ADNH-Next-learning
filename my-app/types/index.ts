@@ -104,3 +104,33 @@ export interface ServicesClientProps {
   };
   services: Service[];
 }
+
+// Sector Types
+export interface Sector {
+  id: number;
+  slug: string;
+  name: string;
+  short_description: string;
+  description: string;
+  thumbnail_text: string;
+  cta_text: string;
+  cta_url: string;
+  vertical_thumbnail: string;
+  horizontal_thumbnail: string;
+  detailed_image: string;
+  alt_text: string;
+  place_holder: string;
+  display_order: number;
+  _uniqueKey?: string; // Optional unique key for duplicated items in Swiper
+}
+
+export interface SectorsSectionProps {
+  slug: string;
+}
+
+export interface SectorsClientProps {
+  title: string;
+  description: string;
+  short_description?: string;
+  sectors: Sector[];
+}
