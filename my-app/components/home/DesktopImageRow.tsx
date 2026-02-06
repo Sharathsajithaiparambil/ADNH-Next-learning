@@ -59,7 +59,6 @@ export default function DesktopImageRow({ items, autoSwapInterval = 3000 }: Desk
                 width={400}
                 height={600}
                 className="w-full h-full object-cover"
-                unoptimized
               />
             </motion.div>
 
