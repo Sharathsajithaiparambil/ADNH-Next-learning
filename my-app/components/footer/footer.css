@@ -114,6 +114,8 @@
 
 .form-group.full-width {
   grid-column: span 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -161,6 +163,40 @@
   font-size: 0.8rem;
   opacity: 0.8;
   color: #b49b57;
+}
+
+.form-input.error {
+  border-bottom-color: #ff4d4d;
+}
+
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+}
+
+.submit-status {
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.submit-status.success {
+  background-color: rgba(129, 199, 132, 0.1);
+  color: #a5d6a7;
+  border: 1px solid #a5d6a7;
+}
+
+.submit-status.error {
+  background-color: rgba(229, 115, 115, 0.1);
+  color: #ef9a9a;
+  border: 1px solid #ef9a9a;
 }
 
 .submit-btn {

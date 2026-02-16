@@ -1,4 +1,4 @@
-import { get } from "../util/fetch";
+import { get, post } from "../util/fetch";
 
 export default async function getHeaderImage() {
     return get('/api/public/settings');
@@ -18,4 +18,8 @@ export async function getOurBrands() {
 
 export async function getSectors() {
     return get('/api/public/sectors');
+}
+
+export async function postContactUs(data: any) {
+    return post('/api/public/contact-us', data);
 }

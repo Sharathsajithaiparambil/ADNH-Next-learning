@@ -1,9 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useActionState } from "react";
 import "./footer.css";
+import { submitContactForm } from "@/app/actions/contact";
 
 const Footer = () => {
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        services: "",
+        message: "",
+    });
+
+    const [state, formAction, isPending] = useActionState(submitContactForm, null);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Reset form when submission is successful
+    useEffect(() => {
+        if (state?.type === 'success') {
+            setFormData({
+                first_name: "",
+                last_name: "",
+                email: "",
+                phone: "",
+                services: "",
+                message: "",
+            });
+        }
+    }, [state]);
+
     return (
         <footer className="footer-section" id="contact-us">
             <div className="footer-bg-pattern"></div>
@@ -86,72 +117,95 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                    <form className="contact-form" action={formAction}>
                         <div className="form-group">
                             <input
                                 type="text"
                                 id="firstName"
-                                className="form-input"
+                                name="first_name"
+                                className={`form-input ${state?.errors?.first_name ? 'error' : ''}`}
                                 placeholder=" "
-                                required
+                                value={formData.first_name}
+                                onChange={handleChange}
                             />
                             <label htmlFor="firstName">First Name *</label>
+                            {state?.errors?.first_name && <span className="error-message">{state.errors.first_name}</span>}
                         </div>
                         <div className="form-group">
                             <input
                                 type="text"
                                 id="lastName"
-                                className="form-input"
+                                name="last_name"
+                                className={`form-input ${state?.errors?.last_name ? 'error' : ''}`}
                                 placeholder=" "
-                                required
+                                value={formData.last_name}
+                                onChange={handleChange}
                             />
                             <label htmlFor="lastName">Last Name *</label>
+                            {state?.errors?.last_name && <span className="error-message">{state.errors.last_name}</span>}
                         </div>
                         <div className="form-group">
                             <input
                                 type="email"
                                 id="email"
-                                className="form-input"
+                                name="email"
+                                className={`form-input ${state?.errors?.email ? 'error' : ''}`}
                                 placeholder=" "
-                                required
+                                value={formData.email}
+                                onChange={handleChange}
                             />
                             <label htmlFor="email">Email Address *</label>
+                            {state?.errors?.email && <span className="error-message">{state.errors.email}</span>}
                         </div>
                         <div className="form-group">
                             <input
                                 type="tel"
                                 id="phone"
-                                className="form-input"
+                                name="phone"
+                                className={`form-input ${state?.errors?.phone ? 'error' : ''}`}
                                 placeholder=" "
-                                required
+                                value={formData.phone}
+                                onChange={handleChange}
                             />
                             <label htmlFor="phone">Mobile Number *</label>
+                            {state?.errors?.phone && <span className="error-message">{state.errors.phone}</span>}
                         </div>
                         <div className="form-group full-width">
                             <input
                                 type="text"
                                 id="services"
-                                className="form-input"
+                                name="services"
+                                className={`form-input ${state?.errors?.services ? 'error' : ''}`}
                                 placeholder=" "
-                                required
+                                value={formData.services}
+                                onChange={handleChange}
                             />
                             <label htmlFor="services">Services *</label>
+                            {state?.errors?.services && <span className="error-message">{state.errors.services}</span>}
                         </div>
                         <div className="form-group full-width">
                             <textarea
                                 id="message"
-                                className="form-input"
+                                name="message"
+                                className={`form-input ${state?.errors?.message ? 'error' : ''}`}
                                 placeholder=" "
                                 rows={1}
-                                required
+                                value={formData.message}
+                                onChange={handleChange}
                             />
                             <label htmlFor="message">Your Message to us *</label>
+                            {state?.errors?.message && <span className="error-message">{state.errors.message}</span>}
                         </div>
                         <div className="full-width">
-                            <button type="submit" className="submit-btn">
-                                Let's Talk
+                            <button type="submit" className="submit-btn" disabled={isPending}>
+                                {isPending ? "Sending..." : "Let's Talk"}
                             </button>
                         </div>
+                        {state?.message && (
+                            <div className={`submit-status ${state.type} full-width`}>
+                                {state.message}
+                            </div>
+                        )}
                     </form>
                 </div>
             </div>
