@@ -3,8 +3,6 @@
 import { SectorsClientProps, Sector } from "@/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -113,13 +111,13 @@ export default function SectorsClient({ title, description, short_description, s
                 return (
                   <SwiperSlide key={(sector as Sector)._uniqueKey || `${sector.id}-${index}`}>
                     <div
-                      onClick={() => {
-                        if (isActive) {
-                          router.push(`/sectors/${sector.slug}`);
-                        } else {
-                          swiperRef.current?.slideToLoop(index);
-                        }
-                      }}
+                    onClick={() => {
+                      if (isActive) {
+                        router.push(`/sectors/${sector.slug}`);
+                      } else {
+                        swiperRef.current?.slideToLoop(index);
+                      }
+                    }}
                       className="group opacity-85 text-center relative rounded-2xl shadow-lg overflow-hidden h-[450px] lg:h-[600px] w-full lg:w-100 cursor-pointer"
                     >
                       <div

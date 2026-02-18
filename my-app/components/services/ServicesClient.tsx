@@ -6,8 +6,6 @@ import { motion } from "framer-motion";
 import { ServicesClientProps } from "@/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 export default function ServicesClient({ header, services }: ServicesClientProps) {
   const [selectedService, setSelectedService] = useState<number | null>(11);

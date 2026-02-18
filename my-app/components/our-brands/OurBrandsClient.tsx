@@ -7,9 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import BrandModal from "./BrandModal";
 import { OurBrandsClientProps, Brand } from "@/types";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 export default function OurBrandsClient({ brands }: OurBrandsClientProps) {
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
