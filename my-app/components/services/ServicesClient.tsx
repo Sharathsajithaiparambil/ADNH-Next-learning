@@ -61,7 +61,7 @@ export default function ServicesClient({ header, services }: ServicesClientProps
                     gridColumn: isSelected ? `span 4` : `span 1`,
                   }}
                   transition={{ duration: 0 }}
-                  className={`relative border-l-1 border-gray-200 bg-slate-100/50 border-secondary overflow-hidden cursor-pointer`}
+                  className={`relative border-l-1 border-gray-200 bg-slate-100/50  overflow-hidden cursor-pointer`}
                   onHoverStart={() => {
                     if (!isSelected) {
                       handleServiceClick(service.id);

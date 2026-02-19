@@ -1,7 +1,7 @@
 import { getBannerData } from "@/app/api/api";
 import DesktopImageRow from "./DesktopImageRow";
 import MobileImageCarousel from "./MobileImageCarousel";
-import { HiArrowRight } from "react-icons/hi";
+import WelcomeButtons from "./WelcomeButtons";
 import { HeroSectionProps } from "@/types";
 
 export default async function WelcomeSection({ slug }: HeroSectionProps) {
@@ -45,18 +45,7 @@ export default async function WelcomeSection({ slug }: HeroSectionProps) {
               dangerouslySetInnerHTML={{ __html: description }}
             />
             
-            <div className="flex flex-col sm:flex-row gap-6 pt-0 items-start">
-              <button className="btn-primary text-white px-6 py-3 rounded-lg text-xl font-semibold cursor-pointer transition-all duration-300 ease-in-out hover:scale-95 whitespace-nowrap flex items-center gap-2">
-                Get In Touch
-                <HiArrowRight className="text-xl" />
-              </button>
-              <button
-                className="text-primary  px-6 py-3 rounded-lg text-xl cursor-pointer transition-all duration-300 ease-in-out hover:scale-95 font-semibold hover:text-secondary transition-colors flex items-center gap-2"
-              >
-                Explore More
-                <HiArrowRight className="text-xl" />
-              </button>
-            </div>
+            <WelcomeButtons />
           </div>
 
           <div className="lg:col-span-3">

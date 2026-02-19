@@ -68,7 +68,8 @@ export default function NavLinks() {
       if (section && lenis) {
         lenis.scrollTo(section, {
           offset: 0,
-          duration: 1.2,
+          duration: 2,
+          easing: (t) => t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2,
         });
         return true;
       }
